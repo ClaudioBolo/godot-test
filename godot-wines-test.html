@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Godot Wines Services — Hospitality IT Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f7f7f7;
+      --light-grey: #efefef;
+      --mid-grey: #b0b0b0;
+      --dark-grey: #444444;
+      --charcoal: #222222;
+      --wine: #8b1a2b;
+      --wine-dark: #6e1422;
+      --wine-light: #a83040;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--white);
+      color: var(--charcoal);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--light-grey);
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--charcoal);
+    }
+
+    .nav-logo span { color: var(--wine); }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dark-grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--wine); }
+
+    /* ── HERO ── */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 120px 10% 80px;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 45%; height: 100%;
+      background: var(--light-grey);
+      clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 0;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 640px; }
+
+    .hero-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--wine);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.1;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.4s forwards;
+    }
+
+    header h1 em { font-style: italic; color: var(--wine); }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 300;
+      color: var(--dark-grey);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.5s forwards;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--mid-grey);
+      max-width: 480px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.6s forwards;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 14px 38px;
+      background: var(--wine);
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: background 0.3s;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.8s forwards;
+    }
+
+    .hero-cta:hover { background: var(--wine-dark); }
+
+    .hero-cta-secondary {
+      display: inline-block;
+      margin-left: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dark-grey);
+      text-decoration: none;
+      border-bottom: 1px solid var(--mid-grey);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 1s forwards;
+    }
+
+    .hero-cta-secondary:hover { color: var(--wine); border-color: var(--wine); }
+
+    /* ── INTRO STRIP ── */
+    .intro {
+      background: var(--wine);
+      color: #fff;
+      padding: 22px 24px;
+      text-align: center;
+    }
+
+    .intro p {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .intro p strong { font-weight: 600; }
+
+    /* ── SERVICES SECTION ── */
+    .services-section { padding: 100px 10%; background: var(--white); }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--wine);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+    }
+
+    .section-title em { font-style: italic; color: var(--wine); }
+
+    .section-intro {
+      font-size: 1rem;
+      color: var(--dark-grey);
+      max-width: 540px;
+      margin-bottom: 64px;
+      line-height: 1.8;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2px;
+    }
+
+    .service-card {
+      background: var(--light-grey);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .service-card:hover { background: var(--charcoal); }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--wine);
+      transition: height 0.4s ease;
+    }
+
+    .service-card:hover::before { height: 100%; }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 24px;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover .service-icon { transform: scale(1.1); }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+      transition: color 0.3s;
+    }
+
+    .service-card:hover h3 { color: #fff; }
+
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--dark-grey);
+      line-height: 1.7;
+      transition: color 0.3s;
+    }
+
+    .service-card:hover p { color: var(--mid-grey); }
+
+    .service-tag {
+      display: inline-block;
+      margin-top: 24px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--wine);
+      transition: color 0.3s;
+    }
+
+    .service-card:hover .service-tag { color: var(--wine-light); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0 10% 80px;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--light-grey);
+    }
+
+    .divider span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--mid-grey);
+      white-space: nowrap;
+    }
+
+    /* ── WINE SECTION ── */
+    .wine-section {
+      background: var(--off-white);
+      padding: 100px 10%;
+      border-top: 1px solid var(--light-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .wine-section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .partner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid var(--light-grey);
+      padding: 10px 20px;
+      margin-bottom: 48px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--dark-grey);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .partner-badge::before { content: '🍷'; font-size: 16px; }
+
+    #collection-component-1779145111064 { margin-top: 16px; }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--charcoal);
+      padding: 60px 10%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--white);
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .stat-item h4 span { color: var(--wine-light); }
+
+    .stat-item p {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--light-grey);
+      padding: 40px 10%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--charcoal);
+    }
+
+    .footer-logo span { color: var(--wine); }
+
+    footer p { font-size: 12px; color: var(--mid-grey); }
+
+    footer a { color: var(--wine); text-decoration: none; }
+    footer a:hover { opacity: 0.7; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      header { padding: 100px 24px 60px; }
+      header::after { display: none; }
+      .services-section, .wine-section { padding: 60px 24px; }
+      .divider { padding: 0 24px 60px; }
+      .stats { padding: 40px 24px; }
+      footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+      .hero-cta-secondary { display: block; margin-left: 0; margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Godot Wines <span>Services</span></div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#wines">Our Wines</a></li>
+      <li><a href="https://godotwines.com.au" target="_blank">Godot Wines</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <div class="hero-content">
+      <p class="hero-label">Hospitality · Technology · Wine</p>
+      <h1>Godot Wines <em>Services</em></h1>
+      <p class="hero-subtitle">Hospitality IT Services</p>
+      <p class="hero-sub">Technology solutions, integrations, and partnerships designed specifically for the hospitality industry — powered by Italy's finest wines.</p>
+      <a href="#services" class="hero-cta">Our Services</a>
+      <a href="#wines" class="hero-cta-secondary">Browse Wines</a>
+    </div>
+  </header>
+
+  <!-- INTRO STRIP -->
+  <div class="intro">
+    <p>Wines available in <strong>Dropshipping</strong> — supplied exclusively by <strong>Godot Wines Australia</strong></p>
+  </div>
+
+  <!-- SERVICES SECTION -->
+  <section class="services-section" id="services">
+    <p class="section-label">What we offer</p>
+    <h2 class="section-title">Built for <em>hospitality</em></h2>
+    <p class="section-intro">We help hospitality businesses integrate technology and premium Italian wine into a seamless, profitable offering.</p>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-icon">⚙️</span>
+        <h3>Solutions</h3>
+        <p>End-to-end technology solutions tailored for restaurants, wine bars, and hospitality operators. From POS integrations to online ordering — we make it work.</p>
+        <span class="service-tag">Technology</span>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🔗</span>
+        <h3>Integrations</h3>
+        <p>Connect your existing systems — CRM, e-commerce, reservations, and logistics — into a unified platform. We specialise in Shopify, Zoho, and custom API workflows.</p>
+        <span class="service-tag">Connectivity</span>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">🤝</span>
+        <h3>Partnership</h3>
+        <p>Become a Godot Wines partner and offer premium Italian wines to your customers via dropshipping — zero stock, zero logistics, full margin. We handle everything.</p>
+        <span class="service-tag">Dropshipping</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <span>Vino Italiano · Dropshipping</span>
+  </div>
+
+  <!-- WINE SECTION -->
+  <section class="wine-section" id="wines">
+    <div class="wine-section-inner">
+      <p class="section-label">Available now</p>
+      <h2 class="section-title">Wines from <em>Godot</em></h2>
+      <p class="section-intro">Hand-selected Italian wines available to order directly. Every bottle is supplied by Godot Wines and shipped in dropshipping — no stock required on your end.</p>
+
+      <div class="partner-badge">
+        Wines supplied by Godot Wines Australia · Dropshipping
+      </div>
+
+      <!-- ✦ SHOPIFY BUY BUTTON EMBED ✦ -->
+      <div id='collection-component-1779145111064'></div>
+      <script type="text/javascript">
+      /*<![CDATA[*/
+      (function () {
+        var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+        if (window.ShopifyBuy) {
+          if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); }
+        } else { loadScript(); }
+        function loadScript() {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = scriptURL;
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+          script.onload = ShopifyBuyInit;
+        }
+        function ShopifyBuyInit() {
+          var client = ShopifyBuy.buildClient({
+            domain: 'kujja9-2b.myshopify.com',
+            storefrontAccessToken: 'de479c82c40bd059f9f20cbb1d48b1d2',
+          });
+          ShopifyBuy.UI.onReady(client).then(function (ui) {
+            ui.createComponent('collection', {
+              id: '637478502765',
+              node: document.getElementById('collection-component-1779145111064'),
+              moneyFormat: '%24%7B%7Bamount%7D%7D',
+              options: {
+                "product": {
+                  "styles": {
+                    "product": {
+                      "@media (min-width: 601px)": {
+                        "max-width": "calc(33.33333% - 30px)",
+                        "margin-left": "30px",
+                        "margin-bottom": "50px",
+                        "width": "calc(33.33333% - 30px)"
+                      },
+                      "img": { "height": "calc(100% - 15px)", "position": "absolute", "left": "0", "right": "0", "top": "0" },
+                      "imgWrapper": { "padding-top": "calc(75% + 15px)", "position": "relative", "height": "0" }
+                    },
+                    "title": { "font-size": "15px" },
+                    "button": {
+                      ":hover": { "background-color": "#6e1422" },
+                      "background-color": "#8b1a2b",
+                      ":focus": { "background-color": "#6e1422" },
+                      "padding-left": "19px", "padding-right": "19px"
+                    },
+                    "price": { "font-weight": "bold", "font-size": "15px" },
+                    "compareAt": { "font-weight": "bold", "font-size": "12.75px" },
+                    "unitPrice": { "font-weight": "bold", "font-size": "12.75px" }
+                  },
+                  "text": { "button": "Add to cart" }
+                },
+                "productSet": {
+                  "styles": { "products": { "@media (min-width: 601px)": { "margin-left": "-30px" } } }
+                },
+                "modalProduct": {
+                  "contents": { "img": false, "imgWithCarousel": true, "button": false, "buttonWithQuantity": true },
+                  "styles": {
+                    "product": { "@media (min-width: 601px)": { "max-width": "100%", "margin-left": "0px", "margin-bottom": "0px" } },
+                    "button": {
+                      ":hover": { "background-color": "#6e1422" },
+                      "background-color": "#8b1a2b",
+                      ":focus": { "background-color": "#6e1422" },
+                      "padding-left": "19px", "padding-right": "19px"
+                    },
+                    "title": { "font-family": "Helvetica Neue, sans-serif", "font-weight": "bold", "font-size": "26px", "color": "#4c4c4c" },
+                    "price": { "font-family": "Helvetica Neue, sans-serif", "font-weight": "normal", "font-size": "18px", "color": "#4c4c4c" }
+                  },
+                  "text": { "button": "Add to cart" }
+                },
+                "option": {},
+                "cart": {
+                  "styles": {
+                    "button": {
+                      ":hover": { "background-color": "#6e1422" },
+                      "background-color": "#8b1a2b",
+                      ":focus": { "background-color": "#6e1422" }
+                    }
+                  },
+                  "text": { "total": "Subtotal", "button": "Checkout" },
+                  "contents": { "note": true }
+                },
+                "toggle": {
+                  "styles": {
+                    "toggle": {
+                      "background-color": "#8b1a2b",
+                      ":hover": { "background-color": "#6e1422" },
+                      ":focus": { "background-color": "#6e1422" }
+                    }
+                  }
+                }
+              },
+            });
+          });
+        }
+      })();
+      /*]]>*/
+      </script>
+      <!-- ✦ END SHOPIFY EMBED ✦ -->
+
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item"><h4>12<span>+</span></h4><p>Years in Italian Wine</p></div>
+    <div class="stat-item"><h4>400<span>+</span></h4><p>Products Available</p></div>
+    <div class="stat-item"><h4>100<span>%</span></h4><p>Italian Producers</p></div>
+    <div class="stat-item"><h4>0</h4><p>Stock Required for Partners</p></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Godot Wines <span>Services</span></div>
+    <p>Wines supplied by <a href="https://godotwines.com.au" target="_blank">Godot Wines Australia</a> in Dropshipping</p>
+  </footer>
+
+</body>
+</html>
