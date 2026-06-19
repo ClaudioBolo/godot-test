@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Godot Wines — Fine Italian Wines</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: #F7F4EF; color: #2C2C2C; }
+    .header { background: #1A3C5A; padding: 24px 40px; border-bottom: 3px solid #C4973A; }
+    .header h1 { color: #fff; font-size: 26px; letter-spacing: 1px; margin-bottom: 4px; }
+    .header p  { color: #B0A898; font-family: Arial, sans-serif; font-size: 14px; }
+    .shop { padding: 32px 40px; min-height: 60vh; }
+    .footer { text-align: center; padding: 24px; color: #B0A898; font-family: Arial, sans-serif; font-size: 12px; border-top: 1px solid #EEE9E1; margin-top: 40px; }
+    .footer a { color: #C4973A; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>GODOT WINES</h1>
+    <p>Fine Italian Wines — Exclusive selection for Godot Wines Services</p>
+  </div>
+
+  <div class="shop">
+
+    <!-- Godot Wines Shop — Partner: Godot Wines Services -->
+    <div id="godot-shop-godot-wines-services"></div>
+    <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
+    <script>
+    (function() {
+      var client = ShopifyBuy.buildClient({
+        domain: 'kujja9-2b.myshopify.com',
+        storefrontAccessToken: 'de479c82c40bd059f9f20cbb1d48b1d2'
+      });
+      ShopifyBuy.UI.onReady(client).then(function(ui) {
+        ui.createComponent('collection', {
+          id: '637478502765',
+          node: document.getElementById('godot-shop-godot-wines-services'),
+          moneyFormat: '%24%7B%7Bamount%7D%7D',
+          options: {
+            product: {
+              styles: {
+                product: { '@media (min-width: 601px)': { 'max-width': 'calc(25% - 20px)', 'margin-left': '20px', 'margin-bottom': '50px' } },
+                button: { 'background-color': '#1A3C5A', ':hover': { 'background-color': '#15304A' }, ':focus': { 'background-color': '#15304A' } }
+              },
+              text: { button: 'Add to Cart' }
+            },
+            cart: {
+              note: 'godot_partner: godot-wines-services',
+              styles: { button: { 'background-color': '#1A3C5A', ':hover': { 'background-color': '#15304A' } } },
+              text: { title: 'Godot Wines', notice: 'Shipping & taxes calculated at checkout.' }
+            }
+          }
+        });
+        // UTM tracking via checkout URL
+        var utmScript = document.createElement('script');
+        utmScript.textContent = 'window.addEventListener("message",function(e){if(e.data&&e.data.type==="checkout_url"){var url=e.data.payload;url+=url.indexOf("?")===-1?"?":"&";url+="utm_source=godot-wines-services&utm_medium=partner_embed&utm_campaign=godot_partner";window.location.href=url;}});';
+        document.head.appendChild(utmScript);
+      });
+    })();
+    </script>
+    <!-- End Godot Wines Shop -->
+
+  </div>
+
+  <div class="footer">
+    Powered by Godot Wines · <a href="https://godotwines.com.au">godotwines.com.au</a>
+  </div>
+
+</body>
+</html>
