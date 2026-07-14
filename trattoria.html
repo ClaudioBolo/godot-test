@@ -236,7 +236,6 @@
             text: { title: 'Godot Wines', notice: 'Delivered across Australia. Free shipping on 6+ bottles.' },
             events: {
               afterInit: function(cart) {
-                cart.model.note = 'godot_partner: ' + PARTNER_SLUG;
                 console.log('Godot: cart ready — partner = ' + PARTNER_SLUG);
               }
             }
