@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trattoria da Marco — Sydney</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, serif; background: #FAFAF8; color: #2C2C2C; }
+
+    /* ── DEV BANNER ── */
+    .dev-banner {
+      background: #C0392B; color: #fff; text-align: center;
+      padding: 10px 20px; font-family: Arial, sans-serif; font-size: 13px; letter-spacing: .3px;
+    }
+    .dev-banner strong { font-weight: bold; }
+
+    /* ── HEADER ── */
+    .header {
+      background: #1C1C1C; padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-left h1 { color: #E8D8B0; font-size: 30px; letter-spacing: 2px; }
+    .header-left p  { color: #888; font-family: Arial, sans-serif; font-size: 13px; margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; }
+    .header-nav { display: flex; gap: 28px; }
+    .header-nav a { color: #AAA; font-family: Arial, sans-serif; font-size: 13px; text-decoration: none; text-transform: uppercase; letter-spacing: .5px; }
+    .header-nav a:hover { color: #E8D8B0; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+                  url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80') center/cover no-repeat;
+      padding: 100px 40px; text-align: center; color: #fff;
+    }
+    .hero h2 { font-size: 38px; letter-spacing: 1px; margin-bottom: 14px; }
+    .hero p  { font-family: Arial, sans-serif; font-size: 16px; color: #DDD; max-width: 560px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 60px 40px; max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      font-size: 26px; color: #1C1C1C; margin-bottom: 8px; letter-spacing: .5px;
+      padding-bottom: 12px; border-bottom: 2px solid #E8D8B0;
+    }
+    .section-sub { font-family: Arial, sans-serif; font-size: 14px; color: #888; margin-bottom: 36px; }
+
+    /* ── MENU GRID ── */
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 20px; }
+    .menu-card { background: #fff; border: 1px solid #E8E4DC; border-radius: 4px; padding: 20px; }
+    .menu-card .dish { font-size: 16px; font-weight: bold; margin-bottom: 4px; }
+    .menu-card .desc { font-family: Arial, sans-serif; font-size: 13px; color: #777; line-height: 1.5; margin-bottom: 10px; }
+    .menu-card .price { font-family: Arial, sans-serif; font-size: 14px; color: #C4973A; font-weight: bold; }
+
+    /* ── WINE SECTION ── */
+    .wine-section { background: #1C1C1C; padding: 60px 40px; }
+    .wine-inner { max-width: 1100px; margin: 0 auto; }
+    .wine-section .section-title { color: #E8D8B0; border-bottom-color: #C4973A; }
+    .wine-section .section-sub { color: #888; }
+    .godot-badge {
+      display: inline-block; background: #C4973A; color: #fff;
+      font-family: Arial, sans-serif; font-size: 11px; font-weight: bold;
+      padding: 4px 10px; border-radius: 2px; letter-spacing: .5px;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .about-text p { font-family: Arial, sans-serif; font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 16px; }
+    .about-img {
+      background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80') center/cover;
+      height: 320px; border-radius: 4px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-bar {
+      background: #F2EFE9; padding: 40px; text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    .contact-bar h3 { font-size: 20px; margin-bottom: 12px; color: #1C1C1C; }
+    .contact-bar p { font-size: 14px; color: #666; line-height: 1.8; }
+    .contact-bar a { color: #C4973A; text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1C1C1C; color: #555; text-align: center;
+      padding: 20px; font-family: Arial, sans-serif; font-size: 12px;
+    }
+    footer span { color: #C4973A; }
+
+    @media (max-width: 768px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .header { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DEV BANNER -->
+  <div class="dev-banner">
+    🧪 <strong>GODOT WINES — TEST ENVIRONMENT</strong> &nbsp;·&nbsp;
+    This page simulates a restaurant/deli partner website &nbsp;·&nbsp;
+    Payments are in <strong>test mode</strong> — use card number <strong>1</strong>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Trattoria da Marco</h1>
+      <p>Authentic Italian · Surry Hills, Sydney</p>
+    </div>
+    <nav class="header-nav">
+      <a href="#">Menu</a>
+      <a href="#">Wine</a>
+      <a href="#">About</a>
+      <a href="#">Reservations</a>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h2>A Taste of Italy in Sydney</h2>
+    <p>Family recipes, seasonal ingredients, and a cellar full of wines hand-selected from Italy's finest small producers.</p>
+  </div>
+
+  <!-- MENU -->
+  <div class="section">
+    <div class="section-title">Our Menu</div>
+    <div class="section-sub">Traditional Italian cucina — made fresh daily</div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="dish">Tagliatelle al Ragù</div>
+        <div class="desc">Hand-rolled egg pasta, slow-cooked Wagyu beef ragù, Parmigiano Reggiano</div>
+        <div class="price">$34</div>
+      </div>
+      <div class="menu-card">
+        <div class="dish">Branzino al Forno</div>
+        <div class="desc">Whole roasted sea bass, capers, olives, cherry tomatoes, lemon</div>
+        <div class="price">$42</div>
+      </div>
+      <div class="menu-card">
+        <div class="dish">Risotto ai Funghi</div>
+        <div class="desc">Carnaroli rice, wild mushrooms, white truffle oil, aged Pecorino</div>
+        <div class="price">$36</div>
+      </div>
+      <div class="menu-card">
+        <div class="dish">Vitello Tonnato</div>
+        <div class="desc">Slow-cooked veal, tuna sauce, capers, anchovy, lemon zest</div>
+        <div class="price">$22</div>
+      </div>
+      <div class="menu-card">
+        <div class="dish">Burrata e Pomodoro</div>
+        <div class="desc">Fresh burrata, heirloom tomatoes, Ligurian basil, EVOO, sea salt</div>
+        <div class="price">$19</div>
+      </div>
+      <div class="menu-card">
+        <div class="dish">Tiramisù della Casa</div>
+        <div class="desc">Savoiardi, mascarpone, espresso, Marsala, cocoa — made in-house</div>
+        <div class="price">$16</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WINE SHOP -->
+  <div class="wine-section">
+    <div class="wine-inner">
+      <div class="section-title">Take Home Our Wines</div>
+      <div class="section-sub">Loved a bottle tonight? Order it to your door — direct from our importer.</div>
+      <div class="godot-badge">🍷 Curated by Godot Wines Australia</div>
+      <div id="godot-shop-trattoria-da-marco"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section">
+    <div class="section-title">Our Story</div>
+    <div class="section-sub">From Napoli to Surry Hills</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Marco Esposito opened Trattoria da Marco in 2009 after leaving his family's restaurant in Napoli. He brought with him his grandmother's recipes, a philosophy of simplicity, and an obsession with sourcing the right ingredients.</p>
+        <p>Our wine list is curated exclusively by Godot Wines Australia — a boutique importer specialising in small Italian producers. Every bottle on our list can be delivered to your home.</p>
+      </div>
+      <div class="about-img"></div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-bar">
+    <h3>Visit Us</h3>
+    <p>
+      142 Crown Street, Surry Hills NSW 2010<br>
+      <a href="tel:+61292231234">(02) 9223 1234</a> &nbsp;·&nbsp;
+      <a href="mailto:info@trattoriadamarco.com.au">info@trattoriadamarco.com.au</a><br>
+      Mon–Sat 12pm–3pm, 6pm–10pm &nbsp;·&nbsp; Sunday 12pm–9pm
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Trattoria da Marco · Wines supplied by <span>Godot Wines Australia</span> · ABN 85 133 996 460
+  </footer>
+
+  <!-- GODOT WINES BUY BUTTON -->
+  <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
+  <script>
+  (function() {
+    var PARTNER_SLUG = 'trattoria-da-marco';
+
+    var client = ShopifyBuy.buildClient({
+      domain: 'kujja9-2b.myshopify.com',
+      storefrontAccessToken: 'de479c82c40bd059f9f20cbb1d48b1d2'
+    });
+
+    ShopifyBuy.UI.onReady(client).then(function(ui) {
+      ui.createComponent('collection', {
+        id: '637478502765',
+        node: document.getElementById('godot-shop-trattoria-da-marco'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+          product: {
+            styles: {
+              product: { '@media (min-width: 601px)': { 'max-width': 'calc(25% - 20px)', 'margin-left': '20px', 'margin-bottom': '50px' } },
+              button: { 'background-color': '#C4973A', 'color': '#1C1C1C', ':hover': { 'background-color': '#B8832A' }, ':focus': { 'background-color': '#B8832A' } },
+              title: { 'color': '#E8D8B0' },
+              price: { 'color': '#C4973A' },
+              img: { 'height': '300px', 'object-fit': 'contain', 'background': '#fff' },
+              imgWrapper: { 'height': '300px', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center', 'background': '#fff' }
+            },
+            text: { button: 'Add to Cart' },
+            contents: { imgWithCarousel: false },
+            templates: {},
+            events: {
+              addVariantToCart: function(product) {
+                // Inject partner as line item property
+                product.selectedVariant.customAttributes = [
+                  { key: 'Partner', value: PARTNER_SLUG }
+                ];
+              }
+            }
+          },
+          cart: {
+            note: 'godot_partner: ' + PARTNER_SLUG,
+            attributes: { godot_partner: PARTNER_SLUG },
+            styles: {
+              button: { 'background-color': '#C4973A', 'color': '#1C1C1C', ':hover': { 'background-color': '#B8832A' } },
+              header: { 'background-color': '#1C1C1C' },
+              title: { 'color': '#E8D8B0' }
+            },
+            text: { title: 'Godot Wines', notice: 'Delivered across Australia. Free shipping on 6+ bottles.' },
+            events: {
+              afterInit: function(cart) {
+                console.log('Godot: cart ready — partner = ' + PARTNER_SLUG);
+              }
+            }
+          }
+        }
+      });
+
+      // UTM tracking via checkout URL
+      window.addEventListener('message', function(e) {
+        if (e.data && e.data.type === 'checkout_url') {
+          var url = e.data.payload;
+          url += (url.indexOf('?') === -1 ? '?' : '&');
+          url += 'utm_source=' + PARTNER_SLUG + '&utm_medium=partner_embed&utm_campaign=godot_partner';
+          window.location.href = url;
+        }
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>
